@@ -1,5 +1,6 @@
 import dbConnect from '../../lib/dbConnect';
 import Member from '../../models/Member';
+import { v4 as uuidv4 } from 'uuid';
 
 export default async function handler(req, res) {
   const { method } = req;
@@ -19,10 +20,10 @@ export default async function handler(req, res) {
       break;
     case 'POST':
       try {
-        console.log(req.body);
-
         const member = await Member.create({
+          userId: uuidv4(),
           username: req.body.username,
+          password: req.body.password,
         }); /* create a new model in the database */
         res.status(201).json({ success: true, data: member });
       } catch (error) {

@@ -6,7 +6,7 @@ const MemberSchema = new mongoose.Schema({
   password: String,
   bookings: [
     {
-      id: String,
+      userId: String,
       movieId: String,
       screeningId: String,
       date: String,
