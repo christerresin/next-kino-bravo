@@ -61,5 +61,8 @@ const getMember = async (username) => {
 
 /*
   Login route with POST?
+    - find member
+    - compare passwords
+    - create COOKIE
   Nested IF in CASE? Better practice
 */
