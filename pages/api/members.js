@@ -58,3 +58,8 @@ const getMember = async (username) => {
   const member = await Member.find({ username: username });
   return member;
 };
+
+/*
+  Login route with POST?
+  Nested IF in CASE? Better practice
+*/
