@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const MemberSchema = new mongoose.Schema({
   id: String,
-  userName: String,
+  username: String,
   password: String,
   bookings: [
     {
@@ -14,3 +14,5 @@ const MemberSchema = new mongoose.Schema({
     },
   ],
 });
+
+export default mongoose.models.Member || mongoose.model('Member', MemberSchema);
