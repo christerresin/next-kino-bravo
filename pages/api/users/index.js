@@ -1,12 +1,10 @@
-import dbConnect from '../../lib/dbConnect';
-import Member from '../../models/Member';
+import dbConnect from '../../../lib/dbConnect';
+import Member from '../../../models/Member';
 import { v4 as uuidv4 } from 'uuid';
 import bcrypt from 'bcrypt';
 
 export default async function handler(req, res) {
   const { method } = req;
-
-  console.log(req.query);
 
   await dbConnect();
 
@@ -23,11 +21,7 @@ export default async function handler(req, res) {
       break;
     case 'POST':
       const saltRounds = 10;
-
-      // check password
-      // let isCorrect = bcrypt.compareSync(req.body.password, hashedPassword);
-
-      let usernameAvailable = await getMember(req.body.username);
+      const usernameAvailable = await getMember(req.body.username);
 
       if (usernameAvailable.length === 0) {
         try {
@@ -41,6 +35,13 @@ export default async function handler(req, res) {
         } catch (error) {
           res.status(400).json({ success: false });
         }
+      }
+
+      const logingIn = await loginMemeber(req.body.username, req.body.password);
+      console.log(logingIn);
+
+      if (logingIn) {
+        res.status(200).json({ success: false, message: 'Login route' });
       } else {
         res
           .status(400)
@@ -59,10 +60,18 @@ const getMember = async (username) => {
   return member;
 };
 
+const loginMemeber = async (username, password) => {
+  const member = await getMember(username);
+  // check password
+  const matchingPassword = bcrypt.compareSync(password, member[0].password);
+  return matchingPassword;
+};
+
 /*
   Login route with POST?
     - find member
     - compare passwords
     - create COOKIE
   Nested IF in CASE? Better practice
+  getMember to return OBJ instead of Arr
 */
