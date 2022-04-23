@@ -1,7 +1,10 @@
-import dbConnect from '../../../lib/dbConnect';
-import Member from '../../../models/Member';
+import Cookies from 'cookies';
 import { v4 as uuidv4 } from 'uuid';
 import bcrypt from 'bcrypt';
+import Iron from '@hapi/iron';
+
+import dbConnect from '../../../lib/dbConnect';
+import Member from '../../../models/Member';
 
 export default async function handler(req, res) {
   const { method } = req;
@@ -44,7 +47,23 @@ export default async function handler(req, res) {
       );
 
       if (logingIn) {
-        res.status(200).json({ success: false, message: 'Login route' });
+        try {
+          const cookies = new Cookies(req, res);
+          cookies.set(
+            'session',
+            await Iron.seal(
+              {
+                username: isMember[0].username,
+                loggedin: true,
+              },
+              process.env.ENC_KEY,
+              Iron.defaults
+            )
+          );
+          res.status(200).json({ success: false, message: 'Login route' });
+        } catch (error) {
+          res.status(400).json({ success: false });
+        }
       } else {
         res
           .status(400)
@@ -65,8 +84,6 @@ const getMember = async (username) => {
 
 /*
   Login route with POST?
-    - find member
-    - compare passwords
     - create COOKIE
   Nested IF in CASE? Better practice
   getMember to return OBJ instead of Arr
