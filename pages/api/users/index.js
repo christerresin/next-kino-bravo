@@ -21,9 +21,9 @@ export default async function handler(req, res) {
       break;
     case 'POST':
       const saltRounds = 10;
-      const usernameAvailable = await getMember(req.body.username);
+      const isMember = await getMember(req.body.username);
 
-      if (usernameAvailable.length === 0) {
+      if (isMember.length === 0) {
         try {
           /* create a new model in the database */
           const member = await Member.create({
@@ -37,8 +37,11 @@ export default async function handler(req, res) {
         }
       }
 
-      const logingIn = await loginMemeber(req.body.username, req.body.password);
-      console.log(logingIn);
+      // if username is registered and entered password is correct, try to log the user in
+      const logingIn = bcrypt.compareSync(
+        req.body.password,
+        isMember[0].password
+      );
 
       if (logingIn) {
         res.status(200).json({ success: false, message: 'Login route' });
@@ -58,13 +61,6 @@ export default async function handler(req, res) {
 const getMember = async (username) => {
   const member = await Member.find({ username: username });
   return member;
-};
-
-const loginMemeber = async (username, password) => {
-  const member = await getMember(username);
-  // check password
-  const matchingPassword = bcrypt.compareSync(password, member[0].password);
-  return matchingPassword;
 };
 
 /*
