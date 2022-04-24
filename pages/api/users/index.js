@@ -33,6 +33,7 @@ export default async function handler(req, res) {
             userId: uuidv4(),
             username: req.body.username,
             password: bcrypt.hashSync(req.body.password, saltRounds),
+            email: req.body.email,
           });
           res.status(201).json({ success: true, data: member });
         } catch (error) {

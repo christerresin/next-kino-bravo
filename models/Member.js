@@ -4,6 +4,7 @@ const MemberSchema = new mongoose.Schema({
   id: String,
   username: String,
   password: String,
+  email: String,
   bookings: [
     {
       userId: String,
