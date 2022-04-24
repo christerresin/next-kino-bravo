@@ -61,7 +61,7 @@ export default async function handler(req, res) {
               Iron.defaults
             )
           );
-          res.status(200).json({ success: false, message: 'Login route' });
+          res.status(200).json({ success: true, message: 'Login route' });
         } catch (error) {
           res.status(400).json({ success: false });
         }
