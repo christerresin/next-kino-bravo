@@ -14,6 +14,7 @@ const LoginPage = () => {
       body: JSON.stringify({
         username,
         password,
+        login: true,
       }),
     });
   };
