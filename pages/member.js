@@ -1,0 +1,42 @@
+import Cookies from 'cookies';
+import Iron from '@hapi/iron';
+
+export const getServerSideProps = async (context) => {
+  const cookies = new Cookies(context.req, context.res);
+  const sessionStr = cookies.get('session');
+
+  if (sessionStr) {
+    const session = await Iron.unseal(
+      sessionStr,
+      process.env.ENC_KEY,
+      Iron.defaults
+    );
+    if (session.loggedin) {
+      return {
+        props: {
+          username: session.username,
+        },
+      };
+    }
+  }
+
+  return {
+    notFound: true,
+  };
+};
+
+const MemberPage = (props) => {
+  return (
+    <div>
+      <h2>SECRET!</h2>
+      <p>You should not see this page</p>
+      <h3>{props.username}</h3>
+    </div>
+  );
+};
+
+export default MemberPage;
+
+/*
+  Comp for Bookings? getServerSideProps to fetch bookings data from DB
+*/
