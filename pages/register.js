@@ -1,11 +1,21 @@
 import { useState } from 'react';
 
 const RegisterPage = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [firstname, setFirstname] = useState('');
-  const [lastname, setLastname] = useState('');
-  const [email, setEmail] = useState('');
+  // const [username, setUsername] = useState('');
+  // const [password, setPassword] = useState('');
+  // const [firstname, setFirstname] = useState('');
+  // const [lastname, setLastname] = useState('');
+  // const [email, setEmail] = useState('');
+
+  const initialState = {
+    username: '',
+    password: '',
+    firstname: '',
+    lastname: '',
+    email: '',
+  };
+
+  const [user, setUser] = useState({ ...initialState });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -15,14 +25,11 @@ const RegisterPage = () => {
         'Content-type': 'application/json',
       },
       body: JSON.stringify({
-        username,
-        firstname,
-        lastname,
-        password,
-        email,
+        ...user,
         register: true,
       }),
     });
+    setUser({ ...initialState });
   };
 
   return (
@@ -33,40 +40,40 @@ const RegisterPage = () => {
           Name
           <input
             type='text'
-            value={firstname}
-            onChange={(e) => setFirstname(e.target.value)}
+            value={user.firstname}
+            onChange={(e) => setUser({ ...user, firstname: e.target.value })}
           />
         </label>
         <label>
           Lastname
           <input
             type='text'
-            value={lastname}
-            onChange={(e) => setLastname(e.target.value)}
+            value={user.lastname}
+            onChange={(e) => setUser({ ...user, lastname: e.target.value })}
           />
         </label>
         <label>
           Username
           <input
             type='text'
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={user.username}
+            onChange={(e) => setUser({ ...user, username: e.target.value })}
           />
         </label>
         <label>
           Password
           <input
             type='password'
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={user.password}
+            onChange={(e) => setUser({ ...user, password: e.target.value })}
           />
         </label>
         <label>
           Email
           <input
             type='email'
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={user.email}
+            onChange={(e) => setUser({ ...user, email: e.target.value })}
           />
         </label>
         <input type='submit' />
