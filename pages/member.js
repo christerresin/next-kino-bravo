@@ -6,17 +6,21 @@ export const getServerSideProps = async (context) => {
   const sessionStr = cookies.get('session');
 
   if (sessionStr) {
-    const session = await Iron.unseal(
-      sessionStr,
-      process.env.ENC_KEY,
-      Iron.defaults
-    );
-    if (session.loggedin) {
-      return {
-        props: {
-          username: session.username,
-        },
-      };
+    try {
+      const session = await Iron.unseal(
+        sessionStr,
+        process.env.ENC_KEY,
+        Iron.defaults
+      );
+      if (session.loggedin) {
+        return {
+          props: {
+            username: session.username,
+          },
+        };
+      }
+    } catch (err) {
+      console.log(err);
     }
   }
 
