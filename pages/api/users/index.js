@@ -9,10 +9,14 @@ import Member from '../../../models/Member';
 export default async function handler(req, res) {
   await dbConnect();
 
-  if (req.body === 'GET') {
+  if (req.method === 'GET') {
     try {
       /* find all the data in our database */
-      const members = await Member.find({});
+      const members = await Member.find(
+        {},
+        { password: 0, lastname: 0, firstname: 0, _id: 0 }
+      );
+
       res.status(200).json({ success: true, data: members });
     } catch (error) {
       res.status(400).json({ success: false });
