@@ -6,7 +6,14 @@ const LoginPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await fetch('/api/users', {
+    const loggedIn = await postData();
+    if (loggedIn == 200) {
+      console.log('LOGGED IN');
+    }
+  };
+
+  const postData = async () => {
+    const response = await fetch('/api/users', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -17,6 +24,8 @@ const LoginPage = () => {
         login: true,
       }),
     });
+
+    return response.status;
   };
 
   return (
