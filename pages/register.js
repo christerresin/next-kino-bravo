@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Link from 'next/dist/client/link';
 
 const RegisterPage = () => {
   // const [username, setUsername] = useState('');
@@ -19,7 +20,12 @@ const RegisterPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await fetch('/api/users', {
+    postData();
+    setUser({ ...initialState });
+  };
+
+  const postData = async () => {
+    const response = await fetch('/api/users', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -29,7 +35,8 @@ const RegisterPage = () => {
         register: true,
       }),
     });
-    setUser({ ...initialState });
+
+    return response;
   };
 
   return (
@@ -78,6 +85,12 @@ const RegisterPage = () => {
         </label>
         <input type='submit' />
       </form>
+      <div>
+        Already a member?{' '}
+        <Link href='/login'>
+          <a>Login here!</a>
+        </Link>
+      </div>
     </div>
   );
 };

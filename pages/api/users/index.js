@@ -77,10 +77,6 @@ export default async function handler(req, res) {
           .status(400)
           .json({ success: false, message: 'Username unavailable' });
       }
-    } else {
-      res
-        .status(401)
-        .json({ success: false, message: 'Wrong username or password' });
     }
   }
 }

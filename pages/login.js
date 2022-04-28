@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 import Cookies from 'cookies';
 import Iron from '@hapi/iron';
@@ -89,6 +90,12 @@ const LoginPage = ({ notloggedin }) => {
           </label>
           <input type='submit' />
         </form>
+        <div>
+          Not a member?{' '}
+          <Link href='/register'>
+            <a>Register Here</a>
+          </Link>
+        </div>
       </div>
     );
   }
