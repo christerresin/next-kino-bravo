@@ -8,14 +8,7 @@ const MemberSchema = new mongoose.Schema({
   password: String,
   email: String,
 
-  bookings: [
-    {
-      movieId: String,
-      screeningId: String,
-      date: String,
-      time: String,
-    },
-  ],
+  bookings: [String],
 });
 
 export default mongoose.models.Member || mongoose.model('Member', MemberSchema);

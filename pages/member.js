@@ -1,7 +1,5 @@
 import Cookies from 'cookies';
 import Iron from '@hapi/iron';
-import dbConnect from '../lib/dbConnect';
-import Member from '../models/Member';
 
 export const getServerSideProps = async (context) => {
   const cookies = new Cookies(context.req, context.res);
@@ -15,19 +13,6 @@ export const getServerSideProps = async (context) => {
         Iron.defaults
       );
       if (session.loggedin) {
-        dbConnect();
-        const memberData = await Member.find(
-          { username: session.username },
-          {
-            password: 0,
-            lastname: 0,
-            firstname: 0,
-            _id: 0,
-            username: 0,
-            email: 0,
-          }
-        );
-
         return {
           props: {
             username: session.username,
@@ -55,5 +40,5 @@ const MemberPage = (props) => {
 export default MemberPage;
 
 /*
-  Comp for Bookings? getServerSideProps to fetch bookings data from DB
+  Comp for Bookings? getServerSideProps to fetch bookings data from bookings DB
 */
