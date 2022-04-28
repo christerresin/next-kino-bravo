@@ -31,12 +31,12 @@ export const getServerSideProps = async (context) => {
 
   return {
     props: {
-      user: 'notaloggedinorvalidusername',
+      notloggedin: true,
     },
   };
 };
 
-const LoginPage = ({ user }) => {
+const LoginPage = ({ notloggedin }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -66,8 +66,7 @@ const LoginPage = ({ user }) => {
     return response.status;
   };
 
-  console.log(user);
-  if (user === 'notaloggedinorvalidusername') {
+  if (notloggedin) {
     return (
       <div>
         <h2>Log in</h2>
