@@ -1,24 +1,27 @@
-import Link from 'next/link'
-import styles from '../styles/Nav.module.css'
-
+import Link from 'next/link';
+import styles from '../styles/Nav.module.css';
 
 const Navbar = () => {
   return (
     <nav className={styles.Nav}>
-        <div className='login'>
+      <div className='login'>
+        <Link href='/login'>
           <a>Login</a>
-        </div>
-        <div className={styles.NavLogo}>
-            <h1>Kino On Mars</h1>
-        </div>
-        <div className="links">
-        <Link href="/"><a>Home</a></Link>
+        </Link>
+      </div>
+      <div className={styles.NavLogo}>
+        <h1>Kino On Mars</h1>
+      </div>
+      <div className='links'>
+        <Link href='/'>
+          <a>Home</a>
+        </Link>
         <a>Movies</a>
         <a>Tickets</a>
         <a>About</a>
-        </div>
+      </div>
     </nav>
   );
-}
+};
 
-export default Navbar
+export default Navbar;

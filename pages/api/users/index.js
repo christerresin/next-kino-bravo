@@ -47,7 +47,7 @@ export default async function handler(req, res) {
       }
     }
 
-    if (req.body.login === true) {
+    if (req.body.login === true && isMember.length > 0) {
       // if username is registered and entered password is correct, try to log the user in
       const logingIn = bcrypt.compareSync(
         req.body.password,
@@ -77,6 +77,10 @@ export default async function handler(req, res) {
           .status(400)
           .json({ success: false, message: 'Username unavailable' });
       }
+    } else {
+      res
+        .status(401)
+        .json({ success: false, message: 'Wrong username or password' });
     }
   }
 }
