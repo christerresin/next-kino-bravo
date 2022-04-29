@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-
 import Cookies from 'cookies';
 import Iron from '@hapi/iron';
+
+import styles from '../styles/Login.module.scss';
 
 export const getServerSideProps = async (context) => {
   const cookies = new Cookies(context.req, context.res);
@@ -69,26 +70,32 @@ const LoginPage = ({ notloggedin }) => {
 
   if (notloggedin) {
     return (
-      <div>
-        <h2>Log in</h2>
-        <form onSubmit={handleSubmit}>
-          <label>
-            Username
+      <div className={styles.user}>
+        <header className={styles.user__header}>
+          <h2 className={styles.user__title}>Log in</h2>
+        </header>
+        <form className={styles.form} onSubmit={handleSubmit}>
+          <div className={styles.form__group}>
             <input
+              placeholder='Username'
+              className={styles.form__input}
               type='text'
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
-          </label>
-          <label>
-            Password
+          </div>
+          <div className={styles.form__group}>
             <input
+              placeholder='Password'
+              className={styles.form__input}
               type='password'
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-          </label>
-          <input type='submit' />
+          </div>
+          <button className={styles.btn} type='submit'>
+            Sign In
+          </button>
         </form>
         <div>
           Not a member?{' '}

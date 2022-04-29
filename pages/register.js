@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Link from 'next/dist/client/link';
 
-import styles from '../styles/register.module.scss';
+import styles from '../styles/Register.module.scss';
 
 const RegisterPage = () => {
   // const [username, setUsername] = useState('');
