@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import Link from 'next/dist/client/link';
 
+import styles from '../styles/register.module.scss';
+
 const RegisterPage = () => {
   // const [username, setUsername] = useState('');
   // const [password, setPassword] = useState('');
@@ -40,50 +42,59 @@ const RegisterPage = () => {
   };
 
   return (
-    <div>
-      <h2>Log in</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Name
+    <div className={styles.user}>
+      <header className={styles.user__header}>
+        <h2 className={styles.user__title}>Register</h2>
+      </header>
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <div className={styles.form__group}>
           <input
+            className={styles.form__input}
+            placeholder='Firstname'
             type='text'
             value={user.firstname}
             onChange={(e) => setUser({ ...user, firstname: e.target.value })}
           />
-        </label>
-        <label>
-          Lastname
+        </div>
+        <div className={styles.form__group}>
           <input
+            className={styles.form__input}
+            placeholder='Lastname'
             type='text'
             value={user.lastname}
             onChange={(e) => setUser({ ...user, lastname: e.target.value })}
           />
-        </label>
-        <label>
-          Username
+        </div>
+        <div className={styles.form__group}>
           <input
+            className={styles.form__input}
+            placeholder='Username'
             type='text'
             value={user.username}
             onChange={(e) => setUser({ ...user, username: e.target.value })}
           />
-        </label>
-        <label>
-          Password
+        </div>
+        <div className={styles.form__group}>
           <input
+            className={styles.form__input}
+            placeholder='Password'
             type='password'
             value={user.password}
             onChange={(e) => setUser({ ...user, password: e.target.value })}
           />
-        </label>
-        <label>
-          Email
+        </div>
+        <div className={styles.form__group}>
           <input
+            className={styles.form__input}
+            placeholder='Email'
             type='email'
             value={user.email}
             onChange={(e) => setUser({ ...user, email: e.target.value })}
           />
-        </label>
-        <input type='submit' />
+        </div>
+        <button className={styles.btn} type='submit'>
+          Register
+        </button>
       </form>
       <div>
         Already a member?{' '}
