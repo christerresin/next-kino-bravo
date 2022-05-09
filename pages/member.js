@@ -30,6 +30,7 @@ export const getServerSideProps = async (context) => {
 };
 
 const MemberPage = (props) => {
+  console.log(document.cookie);
   return (
     <div>
       <h3>Welcome, {props.username}</h3>

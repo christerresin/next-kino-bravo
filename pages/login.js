@@ -3,8 +3,10 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Cookies from 'cookies';
 import Iron from '@hapi/iron';
+import { useContext } from 'react';
 
 import styles from '../styles/Login.module.scss';
+import { AuthContext } from '../state/authContext';
 
 export const getServerSideProps = async (context) => {
   const cookies = new Cookies(context.req, context.res);
@@ -41,6 +43,7 @@ export const getServerSideProps = async (context) => {
 const LoginPage = ({ notloggedin }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const { login } = useContext(AuthContext);
 
   const router = useRouter();
 
@@ -48,7 +51,8 @@ const LoginPage = ({ notloggedin }) => {
     e.preventDefault();
     const loggedIn = await postData();
     if (loggedIn == 200) {
-      router.reload();
+      login(username);
+      router.push({ pathname: '/member' });
     }
   };
 
