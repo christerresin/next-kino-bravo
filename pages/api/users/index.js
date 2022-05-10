@@ -68,15 +68,15 @@ export default async function handler(req, res) {
               Iron.defaults
             )
           );
-          res.status(200).json({ success: true, message: 'Login route' });
+          res.status(200).json({ success: true });
         } catch (error) {
-          res.status(400).json({ success: false });
+          res.status(400).json({ error: 'Something went wrong' });
         }
       } else {
-        res
-          .status(400)
-          .json({ success: false, message: 'Username unavailable' });
+        res.status(400).json({ success: false, message: 'Wrong password' });
       }
+    } else {
+      res.status(400).json({ message: 'Wrong username' });
     }
   }
 }

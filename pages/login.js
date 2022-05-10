@@ -43,6 +43,7 @@ export const getServerSideProps = async (context) => {
 const LoginPage = ({ notloggedin }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const { login } = useContext(AuthContext);
 
   const router = useRouter();
@@ -50,9 +51,11 @@ const LoginPage = ({ notloggedin }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const loggedIn = await postData();
-    if (loggedIn == 200) {
+    if (loggedIn.success == true) {
       login(username);
       router.push({ pathname: '/member' });
+    } else {
+      setError(loggedIn.message);
     }
   };
 
@@ -69,7 +72,7 @@ const LoginPage = ({ notloggedin }) => {
       }),
     });
 
-    return response.status;
+    return response.json();
   };
 
   if (notloggedin) {
@@ -78,7 +81,12 @@ const LoginPage = ({ notloggedin }) => {
         <header className={styles.user__header}>
           <h2 className={styles.user__title}>Log in</h2>
         </header>
-        <form className={styles.form} onSubmit={handleSubmit}>
+        {error && <p className={styles.error}>{error}</p>}
+        <form
+          className={styles.form}
+          onSubmit={handleSubmit}
+          onChange={() => setError('')}
+        >
           <div className={styles.form__group}>
             <input
               placeholder='Username'
@@ -86,6 +94,7 @@ const LoginPage = ({ notloggedin }) => {
               type='text'
               value={username}
               onChange={(e) => setUsername(e.target.value)}
+              required
             />
           </div>
           <div className={styles.form__group}>
@@ -95,6 +104,7 @@ const LoginPage = ({ notloggedin }) => {
               type='password'
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              required
             />
           </div>
           <button className={styles.btn} type='submit'>
