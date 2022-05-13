@@ -20,18 +20,19 @@ export const getServerSideProps = async (context) => {
       if (res.status == 200) {
         const screening = await res.json();
         if (screening) {
+          console.log(screening);
           return {
             props: { screening },
           };
         }
-      } else {
-        return {
-          props: { screening: null },
-        };
       }
     } catch (err) {
       // console.log(err);
     }
+  } else {
+    return {
+      props: { screening: null },
+    };
   }
 };
 
