@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import dbConnect from '../../lib/dbConnect';
-import Movie from '../../models/Movie';
+import Movie from '../../models/movie';
 import Reviews from '../../components/Reviews';
 import Screenings from '../../components/Screenings';
 

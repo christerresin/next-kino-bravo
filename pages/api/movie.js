@@ -1,5 +1,5 @@
 import dbConnect from '../../lib/dbConnect';
-import Movie from '../../models/Movie';
+import Movie from '../../models/movie';
 
 export default async function handler(req, res) {
   await dbConnect();
