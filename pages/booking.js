@@ -12,7 +12,7 @@ import BackBtn from '../components/BackBtn';
 export const getServerSideProps = async (context) => {
   const value = Object.values(context.query);
   const key = Object.keys(context.query);
-  const URL = `http://localhost:3000/api/bookings/${value[0]}`;
+  const URL = `http://localhost:3000/api/bookings/${value}`;
 
   if (key == 'screeningId') {
     try {
