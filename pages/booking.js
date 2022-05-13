@@ -24,14 +24,15 @@ export const getServerSideProps = async (context) => {
             props: { screening },
           };
         }
+      } else {
+        return {
+          props: { screening: null },
+        };
       }
     } catch (err) {
       // console.log(err);
     }
   }
-  return {
-    props: { screening: null },
-  };
 };
 
 export default function Booking({ screening }) {
