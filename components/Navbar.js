@@ -9,9 +9,16 @@ const Navbar = () => {
   return (
     <nav className={styles.Nav}>
       <div className='login'>
-        <Link href='/login'>
-          <a>Login</a>
-        </Link>
+        {user.authenticated && (
+          <Link href='/member'>
+            <a>{user.username}</a>
+          </Link>
+        )}
+        {!user.authenticated && (
+          <Link href='/login'>
+            <a>Login</a>
+          </Link>
+        )}
       </div>
       <div className={styles.NavLogo}>
         <h1>Kino On Mars</h1>
