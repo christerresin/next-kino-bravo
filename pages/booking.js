@@ -1,20 +1,20 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 // import { useRouter } from "next/router";
 
-import BookingForm from "../components/BookingForm";
-import NumOfTickets from "../components/NumOfTickets";
-import PaymentModule from "../components/PaymentModule";
-import Seating from "../components/Seating";
-import StickyBooking from "../components/StickyBooking";
-import styles from "../styles/Booking.module.css";
-import BackBtn from "../components/BackBtn";
+import BookingForm from '../components/BookingForm';
+import NumOfTickets from '../components/NumOfTickets';
+import PaymentModule from '../components/PaymentModule';
+import Seating from '../components/Seating';
+import StickyBooking from '../components/StickyBooking';
+import styles from '../styles/Booking.module.css';
+import BackBtn from '../components/BackBtn';
 
 export const getServerSideProps = async (context) => {
   const value = Object.values(context.query);
   const key = Object.keys(context.query);
-  const URL = `http://localhost:3000/api/bookings/${value}`;
+  const URL = `http://localhost:3000/api/bookings/${value[0]}`;
 
-  if (key == "screeningId") {
+  if (key == 'screeningId') {
     try {
       const res = await fetch(URL);
       if (res.status == 200) {
@@ -51,7 +51,7 @@ export default function Booking({ screening }) {
 
   // Change to check for valid screening ID
   //
-  if (screening && bookingState != "completed") {
+  if (screening && bookingState != 'completed') {
     return (
       <div className={styles.container}>
         <h1>Booking!</h1>
@@ -75,7 +75,7 @@ export default function Booking({ screening }) {
     );
     // Completed booking
     //
-  } else if (screening && bookingState == "completed") {
+  } else if (screening && bookingState == 'completed') {
     return (
       <div className={styles.container}>
         <h2> Booking completed</h2>
