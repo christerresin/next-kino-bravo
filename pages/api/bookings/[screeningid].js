@@ -18,7 +18,7 @@ export default async function handler(req, res) {
   if (req.method == 'GET') {
     const id = Object.values(req.query);
     const prom = await Screening.find({ screeningId: id });
-    const screening = prom[0];
+    const screening = await prom[0];
     if (screening) {
       res.status(200).json(screening);
     } else {
