@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
 
 const MovieSchema = new mongoose.Schema({
-  id: String,
   title: String,
+  id: String,
   description: String,
   imgUrl: String,
   screenings: [

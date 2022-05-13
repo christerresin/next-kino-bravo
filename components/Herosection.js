@@ -1,12 +1,12 @@
 import React from 'react';
 import Slideshow from './Slideshow';
 
-function herosection() {
+function Herosection() {
   return (
     <div>
-        <Slideshow/>
+      <Slideshow />
     </div>
-  )
+  );
 }
 
-export default herosection;
+export default Herosection;
