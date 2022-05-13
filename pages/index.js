@@ -23,7 +23,7 @@ export default function Home() {
           nisi ut aliquip ex ea commodo consequat.
         </p>
         <Link href='/about'>
-          <a>read more..</a>
+          <a>read more...</a>
         </Link>
       </div>
       <div className={styles.quote}>
