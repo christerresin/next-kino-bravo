@@ -1,19 +1,19 @@
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Beau+Rivage&family=Noto+Serif&family=Shadows+Into+Light&family=Square+Peg&family=Whisper&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Beau+Rivage&family=Noto+Serif&family=Shadows+Into+Light&family=Square+Peg&family=Whisper&display=swap');
 
 body {
-  background-image: url("../public/pictures/background.jpg");
+  background-image: url('/pictures/background.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   color: rgb(102, 172, 166);
-  font-family: "Playfair Display";
+  font-family: 'Playfair Display';
 }
 
 .content {
   margin: 10px auto;
 }
 
-.login a{
+.login a {
   padding: 5px 30px;
   display: flex;
   justify-content: flex-end;
@@ -22,9 +22,9 @@ body {
   font-size: 20px;
 }
 
-.login a:hover{
+.login a:hover {
   color: rgb(20, 245, 196);
-  text-shadow: 1px 1px 2px rgb(159, 252, 232), 0 0 2em; 
+  text-shadow: 1px 1px 2px rgb(159, 252, 232), 0 0 2em;
 }
 
 .links {
@@ -32,19 +32,19 @@ body {
   justify-content: space-evenly;
 }
 
-.links a{
+.links a {
   font-size: 25px;
   color: rgb(144, 243, 221);
   text-shadow: 1px 1px 2px rgb(15, 37, 37), 0 0 1em;
   text-decoration: none;
 }
 
-.links a:hover{
+.links a:hover {
   color: rgb(20, 245, 196);
-  text-shadow: 1px 1px 2px rgb(159, 252, 232), 0 0 2em;  
+  text-shadow: 1px 1px 2px rgb(159, 252, 232), 0 0 2em;
 }
 
-footer{
+footer {
   margin-top: 60px;
   padding: 30px 0;
   display: block;
@@ -55,63 +55,58 @@ footer{
   box-shadow: 1px 1px 5px rgb(110, 160, 161);
 }
 
-.NotFound{
+.NotFound {
   color: white;
   text-align: center;
 }
 
-.NotFound a{
+.NotFound a {
   font-size: 20px;
   color: rgb(144, 243, 221);
 }
 
-.NotFound a:hover{
+.NotFound a:hover {
   color: rgb(20, 245, 196);
-  text-shadow: 1px 1px 2px rgb(159, 252, 232), 0 0 2em;  
+  text-shadow: 1px 1px 2px rgb(159, 252, 232), 0 0 2em;
 }
 
-.userDiv{
+.userDiv {
   padding: 10px;
 }
-.userWelcom{
-
+.userWelcom {
   color: white;
 }
-.welcomeA{
+.welcomeA {
   padding-left: 10px;
   color: yellow;
 }
-.userLink{
-  
+.userLink {
   padding: 10px;
   color: brown;
 }
 
-.userDiv a:visited{
+.userDiv a:visited {
   text-decoration: none;
   color: brown;
 }
 
-.loginUsername{
+.loginUsername {
   padding: 5px;
   font-size: 20px;
 }
-.loginUsername input{
+.loginUsername input {
   position: relative;
   left: 10px;
 }
-.loginPassword{
-  
+.loginPassword {
   padding: 20px;
   font-size: 20px;
-
 }
-.loginPassword input{
-  
+.loginPassword input {
   position: relative;
   left: 5px;
 }
 
-.loginSubmit{
+.loginSubmit {
   font-size: 15px;
 }
